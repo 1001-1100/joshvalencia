@@ -1,0 +1,7 @@
+i=2;
+for f in *
+do 
+    echo "$f $i";
+    i=$((i+1));
+    mv $f $i;
+done

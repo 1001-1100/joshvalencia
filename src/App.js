@@ -13,57 +13,46 @@ class App extends Component {
       this.state = {
           cards: cards,
           fact: '...',
+          facts: [],
+          greetings: [],
           leftGreetings: [],
           rightGreetings: [],
           colors: [],
+          count: 0,
       };
   }
 
   componentDidMount(){
     axios.get('https://joshcezarvalencia-backend.herokuapp.com/quote')
     .then(res => {
-      const fact = '\"' + res.data.quote + '\"' + ' - Valencia 2020'
-      this.setState({fact})
+      const facts = res.data
+      const fact = '\"' + facts[this.state.count] + '\"'
+      this.setState({fact, facts})
     })
     axios.get('https://joshcezarvalencia-backend.herokuapp.com/greetings')
     .then(res => {
-      const leftGreetings = []
-      const rightGreetings = []
-      res.data[0].map(greeting => {
-        leftGreetings.push(greeting)
-      })
-      res.data[1].map(greeting => {
-        rightGreetings.push(greeting)
-      })
-      this.setState({leftGreetings, rightGreetings})
+      const greetings = res.data 
+      const leftGreetings = greetings[this.state.count]
+      const rightGreetings = greetings[this.state.count+1]
+      this.setState({greetings, leftGreetings, rightGreetings})
     })
   }
 
   reRoll = () => {
-    this.setState({fact: '...', leftGreetings: [], rightGreetings: []})
-    axios.get('https://joshcezarvalencia-backend.herokuapp.com/quote')
-    .then(res => {
-      const fact = '\"' + res.data.quote + '\"' + ' - Valencia 2020'
-      this.setState({fact})
-    })
-    axios.get('https://joshcezarvalencia-backend.herokuapp.com/greetings')
-    .then(res => {
-      const leftGreetings = []
-      const rightGreetings = []
-      res.data[0].map(greeting => {
-        leftGreetings.push(greeting)
-      })
-      res.data[1].map(greeting => {
-        rightGreetings.push(greeting)
-      })
-      this.setState({leftGreetings, rightGreetings})
-    })
+    console.log("Re-roll!")
+    const factCount = this.state.count % this.state.facts.length
+    const leftCount = this.state.count % this.state.greetings.length
+    const rightCount = (this.state.count + 1) % this.state.greetings.length
+    const fact = '\"' + this.state.facts[factCount] + '\"'
+    const leftGreetings = this.state.greetings[leftCount]
+    const rightGreetings = this.state.greetings[rightCount]
+    this.setState({count: this.state.count+1,fact, leftGreetings, rightGreetings})
   }
 
   main = () => {
     return (
       <Fragment>
-        <Main fact={this.state.fact} reRoll={this.reRoll} rightGreetings={this.state.rightGreetings} leftGreetings={this.state.leftGreetings}/>
+        <Main fact={this.state.fact} count={this.state.count} reRoll={this.reRoll} rightGreetings={this.state.rightGreetings} leftGreetings={this.state.leftGreetings}/>
       </Fragment>
     )
   }

@@ -15,7 +15,7 @@ class Picture extends Component {
             <Card variant="outlined">
                 <CardMedia
                 style={{height:0, paddingTop:'100%'}}
-                image="/pictures/20181204_180923.gif"
+                image={"/pictures/"+((this.props.count % 35)+1)}
                 />
                 {/* <CardContent>
                     <Typography variant="h5" component="h2">

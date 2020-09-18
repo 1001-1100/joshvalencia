@@ -25,6 +25,9 @@ class Main extends Component {
 
     }
 
+    redirect = () => {
+    }
+
     render() { 
         return ( 
             <Container maxWidth="lg">
@@ -43,7 +46,7 @@ class Main extends Component {
                         )}
                     </Grid>
                     <Grid item xs={6}>
-                        <SimpleCard/>
+                        <SimpleCard count={this.props.count}/>
                         <center>
                             <Fact fact={this.props.fact} />
                             <Box my={2}>
@@ -65,41 +68,9 @@ class Main extends Component {
                             </Box>
                         )}
                     </Grid>
-                    {/* <Grid item xs={3}>
-                        {this.props.greetings.map(greeting => 
-                            <Box my={1}>
-                                <Greeting message={greeting.message} name={greeting.name}/>
-                            </Box>
-                        )}
-                    </Grid>
-                    <Grid item xs={3}>
-                        {this.props.greetings.map(greeting => 
-                            <Box my={1}>
-                                <Greeting message={greeting.message} name={greeting.name}/>
-                            </Box>
-                        )}
-                    </Grid>
-                    <Grid item xs={3}>
-                        {this.props.greetings.map(greeting => 
-                            <Box my={1}>
-                                <Greeting message={greeting.message} name={greeting.name}/>
-                            </Box>
-                        )}
-                    </Grid>
-                    <Grid item xs={3}>
-                        {this.props.greetings.map(greeting => 
-                            <Box my={1}>
-                                <Greeting message={greeting.message} name={greeting.name}/>
-                            </Box>
-                        )}
-                    </Grid>  */}
                 </Grid>
-                {/* <Box my={4}>
-                </Box>
-                <Box my={4}>
-                </Box> */}
-
             </Box>
+            {this.redirect()}
             </Container>
          );
     }
