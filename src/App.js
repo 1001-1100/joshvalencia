@@ -40,13 +40,14 @@ class App extends Component {
 
   reRoll = () => {
     console.log("Re-roll!")
-    const factCount = this.state.count % this.state.facts.length
-    const leftCount = this.state.count % this.state.greetings.length
-    const rightCount = (this.state.count + 1) % this.state.greetings.length
+    const count = this.state.count + 1
+    const factCount = count % this.state.facts.length
+    const leftCount = count % this.state.greetings.length
+    const rightCount = (count + 1) % this.state.greetings.length
     const fact = '\"' + this.state.facts[factCount] + '\"'
     const leftGreetings = this.state.greetings[leftCount]
     const rightGreetings = this.state.greetings[rightCount]
-    this.setState({count: this.state.count+1,fact, leftGreetings, rightGreetings})
+    this.setState({count, fact, leftGreetings, rightGreetings})
   }
 
   main = () => {

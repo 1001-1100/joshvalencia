@@ -7,6 +7,7 @@ import Box from '@material-ui/core/Box';
 import Fact from './Fact';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { FixedSizeList } from 'react-window';
@@ -55,9 +56,11 @@ class Main extends Component {
                             </Button>
                             </Box>
                             <Box>
-                            <Button onClick={this.leaveGreeting}variant="contained" color="secondary">
-                                Leave a greeting
-                            </Button>
+                            <Link href="https://forms.gle/FfpSRRU8Lqo8AtZD9">
+                                <Button onClick={this.leaveGreeting}variant="contained" color="secondary">
+                                    Leave a greeting
+                                </Button>
+                            </Link>
                             </Box>
                         </center>
                     </Grid>
