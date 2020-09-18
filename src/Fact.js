@@ -26,7 +26,7 @@ export default function Fact(props) {
   return (
     <Typography variant="h5" className={classes.root} color="textSecondary">
       {/* <LightBulbIcon className={classes.lightBulb} /> */}
-      "{"Mas masarap pag mali"}" {"- Valencia 2020"}
+      {props.fact}
     </Typography>
   );
 }
